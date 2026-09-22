@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta name="theme-color" content="#050505">
+
+    <meta
+        name="description"
+        content="BMW M5 G90 Interactive 360 Degree 3D Experience"
+    >
+
+    <title>BMW M5 — 360° 3D Experience</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+         APPLICATION ROOT
+         ========================================================= -->
+
+    <div id="app">
+
+        <!-- =====================================================
+             LOADING SCREEN
+             ===================================================== -->
+
+        <section id="loading-screen">
+
+            <div class="loading-inner">
+
+                <div class="loading-brand">
+                    <div class="loading-m">
+                        M
+                    </div>
+
+                    <div class="loading-five">
+                        5
+                    </div>
+                </div>
+
+                <div class="loading-title">
+                    BMW M5
+                </div>
+
+                <div class="loading-subtitle">
+                    G90 • 360° 3D EXPERIENCE
+                </div>
+
+                <div class="loading-line">
+                    <div id="loading-progress"></div>
+                </div>
+
+                <div id="loading-percent">
+                    0%
+                </div>
+
+                <div id="loading-status">
+                    INITIALIZING EXPERIENCE
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MAIN EXPERIENCE
+             ===================================================== -->
+
+        <main id="experience">
+
+            <!-- =================================================
+                 BACKGROUND
+                 ================================================= -->
+
+            <div
+                id="background"
+                aria-hidden="true"
+            >
+
+                <div class="background-grid"></div>
+
+                <div class="background-glow background-glow-one"></div>
+
+                <div class="background-glow background-glow-two"></div>
+
+                <div class="background-vignette"></div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TOP NAVIGATION
+                 ================================================= -->
+
+            <header id="topbar">
+
+                <div id="brand">
+
+                    <div id="brand-roundel">
+
+                        <span class="roundel-blue"></span>
+
+                        <span class="roundel-white"></span>
+
+                        <span class="roundel-blue"></span>
+
+                        <span class="roundel-white"></span>
+
+                    </div>
+
+                    <div id="brand-text">
+
+                        <strong>
+                            BMW M5
+                        </strong>
+
+                        <small>
+                            G90
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div id="topbar-center">
+
+                    <span>
+                        M PERFORMANCE
+                    </span>
+
+                </div>
+
+
+                <button
+                    id="menu-button"
+                    type="button"
+                    aria-label="Open menu"
+                >
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </header>
+
+
+            <!-- =================================================
+                 3D SHOWROOM
+                 ================================================= -->
+
+            <section id="showroom">
+
+                <!-- =============================================
+                     3D CANVAS
+                     ============================================= -->
+
+                <div id="car-stage">
+
+                    <canvas
+                        id="car-canvas"
+                        aria-label="Interactive BMW M5 3D model"
+                    ></canvas>
+
+
+                    <!-- =========================================
+                         MODEL STATUS
+                         ========================================= -->
+
+                    <div id="model-status">
+
+                        <span id="status-indicator"></span>
+
+                        <span id="status-text">
+                            3D ENGINE INITIALIZING
+                        </span>
+
+                    </div>
+
+
+                    <!-- =========================================
+                         360 DEGREE LABEL
+                         ========================================= -->
+
+                    <div id="rotation-label">
+
+                        <span>
+                            360°
+                        </span>
+
+                        <small>
+                            INTERACTIVE VIEW
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =============================================
+                     VEHICLE INFORMATION
+                     ============================================= -->
+
+                <div id="vehicle-information">
+
+                    <div class="vehicle-category">
+                        BMW M
+                    </div>
+
+                    <h1>
+                        M5
+                    </h1>
+
+                    <div class="vehicle-generation">
+                        G90
+                    </div>
+
+                    <p>
+                        HIGH-PERFORMANCE LUXURY SEDAN
+                    </p>
+
+                </div>
+
+
+                <!-- =============================================
+                     INTERACTION HINT
+                     ============================================= -->
+
+                <div id="interaction-hint">
+
+                    <div class="gesture">
+
+                        <span class="gesture-arrow-left">
+                            ←
+                        </span>
+
+                        <span class="gesture-center">
+                            ↔
+                        </span>
+
+                        <span class="gesture-arrow-right">
+                            →
+                        </span>
+
+                    </div>
+
+                    <span>
+                        DRAG TO ROTATE
+                    </span>
+
+                    <small>
+                        PINCH TO ZOOM
+                    </small>
+
+                </div>
+
+
+                <!-- =============================================
+                     3D CONTROLS
+                     ============================================= -->
+
+                <div id="vehicle-controls">
+
+                    <button
+                        id="rotate-left"
+                        class="vehicle-control"
+                        type="button"
+                        aria-label="Rotate left"
+                    >
+                        <span>↶</span>
+                    </button>
+
+
+                    <button
+                        id="reset-view"
+                        class="vehicle-control vehicle-control-main"
+                        type="button"
+                        aria-label="Reset view"
+                    >
+                        <span>360°</span>
+                    </button>
+
+
+                    <button
+                        id="rotate-right"
+                        class="vehicle-control"
+                        type="button"
+                        aria-label="Rotate right"
+                    >
+                        <span>↷</span>
+                    </button>
+
+
+                    <button
+                        id="zoom-out"
+                        class="vehicle-control"
+                        type="button"
+                        aria-label="Zoom out"
+                    >
+                        <span>−</span>
+                    </button>
+
+
+                    <button
+                        id="zoom-in"
+                        class="vehicle-control"
+                        type="button"
+                        aria-label="Zoom in"
+                    >
+                        <span>+</span>
+                    </button>
+
+                </div>
+
+
+                <!-- =============================================
+                     MODEL DATA
+                     ============================================= -->
+
+                <div id="model-data">
+
+                    <div class="model-data-item">
+
+                        <small>
+                            MODEL
+                        </small>
+
+                        <strong>
+                            M5
+                        </strong>
+
+                    </div>
+
+
+                    <div class="model-data-divider"></div>
+
+
+                    <div class="model-data-item">
+
+                        <small>
+                            GENERATION
+                        </small>
+
+                        <strong>
+                            G90
+                        </strong>
+
+                    </div>
+
+
+                    <div class="model-data-divider"></div>
+
+
+                    <div class="model-data-item">
+
+                        <small>
+                            BODY
+                        </small>
+
+                        <strong>
+                            SEDAN
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SPECIFICATION BAR
+                 ================================================= -->
+
+            <section id="specification-bar">
+
+                <div class="specification">
+
+                    <span class="spec-number">
+                        01
+                    </span>
+
+                    <div>
+                        <small>
+                            POWER
+                        </small>
+
+                        <strong>
+                            M HYBRID
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="specification">
+
+                    <span class="spec-number">
+                        02
+                    </span>
+
+                    <div>
+                        <small>
+                            DRIVE
+                        </small>
+
+                        <strong>
+                            M xDRIVE
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="specification">
+
+                    <span class="spec-number">
+                        03
+                    </span>
+
+                    <div>
+                        <small>
+                            ENGINE
+                        </small>
+
+                        <strong>
+                            V8
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="specification">
+
+                    <span class="spec-number">
+                        04
+                    </span>
+
+                    <div>
+                        <small>
+                            EXPERIENCE
+                        </small>
+
+                        <strong>
+                            360° 3D
+                        </strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SIDE MENU
+                 ================================================= -->
+
+            <aside id="side-menu">
+
+                <div class="menu-header">
+
+                    <div>
+
+                        <small>
+                            EXPLORE
+                        </small>
+
+                        <h2>
+                            M5
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        id="close-menu"
+                        type="button"
+                        aria-label="Close menu"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <nav id="menu-navigation">
+
+                    <button
+                        class="menu-item active"
+                        type="button"
+                        data-section="showroom"
+                    >
+
+                        <span>
+                            01
+                        </span>
+
+                        <strong>
+                            3D SHOWROOM
+                        </strong>
+
+                    </button>
+
+
+                    <button
+                        class="menu-item"
+                        type="button"
+                        data-section="specifications"
+                    >
+
+                        <span>
+                            02
+                        </span>
+
+                        <strong>
+                            SPECIFICATIONS
+                        </strong>
+
+                    </button>
+
+
+                    <button
+                        class="menu-item"
+                        type="button"
+                        data-section="design"
+                    >
+
+                        <span>
+                            03
+                        </span>
+
+                        <strong>
+                            DESIGN
+                        </strong>
+
+                    </button>
+
+
+                    <button
+                        class="menu-item"
+                        type="button"
+                        data-section="technology"
+                    >
+
+                        <span>
+                            04
+                        </span>
+
+                        <strong>
+                            TECHNOLOGY
+                        </strong>
+
+                    </button>
+
+
+                    <button
+                        class="menu-item"
+                        type="button"
+                        data-section="dimensions"
+                    >
+
+                        <span>
+                            05
+                        </span>
+
+                        <strong>
+                            DIMENSIONS
+                        </strong>
+
+                    </button>
+
+                </nav>
+
+
+                <div class="menu-footer">
+
+                    <span>
+                        BMW M5
+                    </span>
+
+                    <span>
+                        G90
+                    </span>
+
+                </div>
+
+            </aside>
+
+
+            <!-- =================================================
+                 MENU BACKDROP
+                 ================================================= -->
+
+            <div
+                id="menu-backdrop"
+                aria-hidden="true"
+            ></div>
+
+
+            <!-- =================================================
+                 SETTINGS PANEL
+                 ================================================= -->
+
+            <section id="settings-panel">
+
+                <div class="settings-header">
+
+                    <div>
+
+                        <small>
+                            CONTROL
+                        </small>
+
+                        <h2>
+                            SETTINGS
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        id="close-settings"
+                        type="button"
+                        aria-label="Close settings"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            AUTO ROTATE
+                        </strong>
+
+                        <small>
+                            Automatically rotate the M5
+                        </small>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            id="auto-rotate-toggle"
+                            type="checkbox"
+                        >
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            SHOW GRID
+                        </strong>
+
+                        <small>
+                            Display showroom grid
+                        </small>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            id="grid-toggle"
+                            type="checkbox"
+                            checked
+                        >
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            DARK MODE
+                        </strong>
+
+                        <small>
+                            Dark automotive environment
+                        </small>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            id="dark-toggle"
+                            type="checkbox"
+                            checked
+                        >
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SETTINGS BUTTON
+                 ================================================= -->
+
+            <button
+                id="settings-button"
+                type="button"
+                aria-label="Open settings"
+            >
+                ⚙
+            </button>
+
+
+            <!-- =================================================
+                 FOOTER
+                 ================================================= -->
+
+            <footer id="footer">
+
+                <span>
+                    BMW M5 G90
+                </span>
+
+                <span>
+                    INTERACTIVE 360° 3D EXPERIENCE
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================================
+         MAIN JAVASCRIPT ENTRY
+         ========================================================= -->
+
+    <script type="module" src="engine/main.js"></script>
+
+</body>
+</html>
